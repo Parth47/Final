@@ -415,7 +415,7 @@ export const embassyContacts: EmbassyContact[] = [
     name: "Consular Assistance (UAE-wide)",
     phone: "+971 4 309 4444",
     description: "24/7 Consular Assistance",
-    website: "https://www.gov.uk/world/uae",
+    website: "https://www.gov.uk/world/united-arab-emirates",
   },
   {
     country: "India",
@@ -445,7 +445,7 @@ export const embassyContacts: EmbassyContact[] = [
     name: "Embassy Abu Dhabi",
     phone: "+971 50 124 8934",
     description: "Emergency WhatsApp/Mobile",
-    website: "https://www.pakembassyuae.org",
+    website: "https://pakistanconsulatedubai.ae/",
   },
   {
     country: "Pakistan",
@@ -460,7 +460,7 @@ export const embassyContacts: EmbassyContact[] = [
     name: "Embassy Abu Dhabi",
     phone: "+971 50 813 7836",
     description: "Duty Phone and WhatsApp",
-    website: "https://dubaipcg.dfa.gov.ph",
+    website: "https://dubaipcg.dfa.gov.ph/",
   },
   {
     country: "Philippines",
@@ -475,7 +475,7 @@ export const embassyContacts: EmbassyContact[] = [
     name: "Embassy Abu Dhabi",
     phone: "+971 2 694 0300",
     description: "24/7 Emergency Line",
-    website: "https://www.international.gc.ca",
+    website: "https://travel.gc.ca/assistance/embassies-consulates/united-arab-emirates",
   },
   {
     country: "Canada",
@@ -490,7 +490,7 @@ export const embassyContacts: EmbassyContact[] = [
     name: "Consulate Dubai",
     phone: "+971 4 508 7100",
     description: "Consular Assistance",
-    website: "https://uae.embassy.gov.au",
+    website: "https://www.dfat.gov.au/about-us/our-locations/missions/Pages/australian-consulate-general-in-dubai-united-arab-emirates",
   },
   {
     country: "Australia",
@@ -505,7 +505,7 @@ export const embassyContacts: EmbassyContact[] = [
     name: "Consulate Dubai",
     phone: "+971 4 349 8888",
     description: "24/7 Emergency Support",
-    website: "https://uae.diplo.de",
+    website: "https://uae.diplo.de/ae-en/ueber-uns/generalkonsulat1",
   },
   {
     country: "France",
@@ -514,7 +514,7 @@ export const embassyContacts: EmbassyContact[] = [
     phone: "+971 4 408 4900",
     emergencyPhone: "+971 50 644 68 60",
     description: "After-hours emergency support available",
-    website: "https://ae.ambafrance.org",
+    website: "https://ae.diplomatie.gouv.fr/en",
   },
   {
     country: "South Africa",
@@ -594,7 +594,7 @@ export const embassyContacts: EmbassyContact[] = [
     name: "Consulate Dubai",
     phone: "+971 4 394 4733",
     description: "24/7 Protection Line",
-    website: "http://dubai.china-consulate.gov.cn",
+    website: "https://dubai.china-consulate.gov.cn/eng/",
   },
   {
     country: "China",
