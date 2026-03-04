@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Phone, ExternalLink, Globe, Radar, Clock3, Plane } from "lucide-react";
+import { Phone, ExternalLink, Globe, Radar, Clock3, Plane, Search } from "lucide-react";
 import type { AirlineInfo } from "@/lib/types";
 
 interface AirlinesTabProps {
@@ -154,6 +154,21 @@ function AirlineCard({ airline }: { airline: AirlineInfo }) {
 
 export default function AirlinesTab({ airlines, fetchedAt, isLoading, error, onRetry }: AirlinesTabProps) {
   const { t } = useTranslation();
+  const [search, setSearch] = useState("");
+
+  const filteredAirlines = useMemo(() => {
+    const query = search.trim().toLowerCase();
+    if (!query) {
+      return airlines;
+    }
+
+    return airlines.filter((airline) =>
+      [airline.name, airline.hub, airline.phone, airline.whatsapp ?? "", airline.websiteUrl ?? ""]
+        .join(" ")
+        .toLowerCase()
+        .includes(query)
+    );
+  }, [airlines, search]);
 
   return (
     <div className="space-y-6">
@@ -180,6 +195,17 @@ export default function AirlinesTab({ airlines, fetchedAt, isLoading, error, onR
           <Clock3 className="w-3.5 h-3.5" />
           Dataset updated: {formatTimestamp(fetchedAt)}
         </div>
+
+        <div className="mt-4 relative">
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+          <input
+            type="text"
+            value={search}
+            onChange={(event) => setSearch(event.target.value)}
+            placeholder="Search by airline name, hub, or contact"
+            className="w-full pl-10 pr-4 py-3 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl text-sm text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          />
+        </div>
       </section>
 
       {error && airlines.length === 0 && !isLoading && (
@@ -203,9 +229,16 @@ export default function AirlinesTab({ airlines, fetchedAt, isLoading, error, onR
       <section className="bg-white/60 dark:bg-gray-900/40 border border-gray-200 dark:border-gray-800 rounded-2xl p-4 shadow-sm">
         {isLoading && airlines.length === 0 ? (
           <AirlinesSkeleton />
+        ) : filteredAirlines.length === 0 ? (
+          <div className="text-center py-10 text-gray-500 dark:text-gray-400">
+            <Search className="w-10 h-10 mx-auto mb-3 opacity-40" />
+            <p className="text-sm">
+              {search.trim() ? "No airlines found for this search." : "No airline data available."}
+            </p>
+          </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 items-stretch">
-            {airlines.map((airline) => (
+            {filteredAirlines.map((airline) => (
               <AirlineCard key={airline.id} airline={airline} />
             ))}
           </div>
