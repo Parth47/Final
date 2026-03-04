@@ -8,6 +8,7 @@
   --color-crisis-amber: #f59e0b;
   --color-crisis-green: #16a34a;
   --color-crisis-blue: #2563eb;
+  --app-header-height: 0px;
 }
 
 html {

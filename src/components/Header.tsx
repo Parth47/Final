@@ -2,7 +2,7 @@
 
 import { useTranslation } from "react-i18next";
 import { Moon, Sun, Globe, Shield, RefreshCw, Clock } from "lucide-react";
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useRef } from "react";
 
 interface HeaderProps {
   lastUpdated?: string | null;
@@ -18,6 +18,7 @@ export default function Header({
   const { t, i18n } = useTranslation();
   const [darkMode, setDarkMode] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
+  const headerRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
@@ -25,6 +26,29 @@ export default function Header({
     const isDark = saved ? saved === "dark" : prefersDark;
     setDarkMode(isDark);
     document.documentElement.classList.toggle("dark", isDark);
+  }, []);
+
+  useEffect(() => {
+    const header = headerRef.current;
+    if (!header) {
+      return;
+    }
+
+    const updateHeaderHeight = () => {
+      const nextHeight = Math.ceil(header.getBoundingClientRect().height);
+      document.documentElement.style.setProperty("--app-header-height", `${nextHeight}px`);
+    };
+
+    updateHeaderHeight();
+
+    const observer = new ResizeObserver(updateHeaderHeight);
+    observer.observe(header);
+    window.addEventListener("resize", updateHeaderHeight);
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", updateHeaderHeight);
+    };
   }, []);
 
   const toggleDark = () => {
@@ -70,7 +94,7 @@ export default function Header({
   }, [lastUpdated]);
 
   return (
-    <header className="bg-gray-900 dark:bg-black border-b border-gray-700 dark:border-gray-800 sticky top-0 z-50">
+    <header ref={headerRef} className="bg-gray-900 dark:bg-black border-b border-gray-700 dark:border-gray-800 sticky top-0 z-50">
       <div className="max-w-6xl mx-auto px-4 py-3 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex items-center gap-3 min-w-0">
           <div className="bg-red-600 p-2 rounded-lg flex-shrink-0">

@@ -19,7 +19,7 @@ export default function NavTabs({ active, onChange }: NavTabsProps) {
   const { t } = useTranslation();
 
   return (
-    <nav className="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 sm:sticky sm:top-[60px] z-40 overflow-x-auto">
+    <nav className="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 sticky top-[var(--app-header-height)] z-40 overflow-x-auto">
       <div className="max-w-6xl mx-auto flex min-w-max">
         {tabs.map((tab) => {
           const isActive = active === tab.id;
