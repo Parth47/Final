@@ -1,0 +1,74 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --color-crisis-red: #dc2626;
+  --color-crisis-red-dark: #991b1b;
+  --color-crisis-amber: #f59e0b;
+  --color-crisis-green: #16a34a;
+  --color-crisis-blue: #2563eb;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* RTL support for Arabic and Urdu */
+[dir="rtl"] {
+  font-family: "Noto Sans Arabic", "Noto Sans", system-ui, sans-serif;
+}
+
+/* Pulse animation for critical alerts */
+@keyframes crisis-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+.crisis-pulse {
+  animation: crisis-pulse 2s ease-in-out infinite;
+}
+
+/* Timeline connector line */
+.timeline-line {
+  position: absolute;
+  left: 1.25rem;
+  top: 2.5rem;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, #dc2626, #991b1b);
+}
+
+[dir="rtl"] .timeline-line {
+  left: auto;
+  right: 1.25rem;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #374151;
+  border-radius: 3px;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #4b5563;
+}
