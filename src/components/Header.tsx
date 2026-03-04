@@ -71,22 +71,22 @@ export default function Header({
 
   return (
     <header className="bg-gray-900 dark:bg-black border-b border-gray-700 dark:border-gray-800 sticky top-0 z-50">
-      <div className="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
-        <div className="flex items-center gap-3">
+      <div className="max-w-6xl mx-auto px-4 py-3 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex items-center gap-3 min-w-0">
           <div className="bg-red-600 p-2 rounded-lg flex-shrink-0">
             <Shield className="w-6 h-6 text-white" />
           </div>
-          <div>
-            <h1 className="text-white font-extrabold text-lg leading-tight">{t("app_title")}</h1>
-            <p className="text-gray-400 text-xs">{t("app_subtitle")}</p>
-            <div className="flex items-center gap-2 mt-0.5">
+          <div className="min-w-0">
+            <h1 className="text-white font-extrabold text-base sm:text-lg leading-tight break-words">{t("app_title")}</h1>
+            <p className="text-gray-400 text-xs hidden sm:block">{t("app_subtitle")}</p>
+            <div className="flex items-center gap-2 mt-0.5 min-w-0">
               <Clock className="w-3 h-3 text-gray-500" />
-              <span className="text-gray-400 text-[11px]">Last Updated: {formattedLastUpdated} UAE</span>
+              <span className="text-gray-400 text-[10px] sm:text-[11px] truncate">Last Updated: {formattedLastUpdated} UAE</span>
             </div>
           </div>
         </div>
 
-        <div className="flex items-center gap-1.5">
+        <div className="flex items-center justify-end gap-1.5 w-full sm:w-auto">
           <button
             onClick={onRefresh}
             className="p-2 rounded-lg bg-gray-800 hover:bg-gray-700 text-gray-300 hover:text-white transition-colors disabled:opacity-50"

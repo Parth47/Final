@@ -85,7 +85,7 @@ function AirlineLogo({ airline }: { airline: AirlineInfo }) {
 
 function AirlinesSkeleton() {
   return (
-    <div className="grid grid-cols-3 gap-4" aria-hidden>
+    <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4" aria-hidden>
       {Array.from({ length: 6 }).map((_, index) => (
         <div
           key={index}
@@ -117,7 +117,7 @@ function AirlineCard({ airline }: { airline: AirlineInfo }) {
       <div className="space-y-3 mt-auto">
         <a
           href={toTelHref(airline.phone)}
-          className="w-full inline-flex items-center justify-center gap-2 bg-green-600 hover:bg-green-700 text-white px-4 py-2.5 rounded-lg text-sm font-semibold transition-colors"
+          className="w-full inline-flex items-center justify-center gap-2 bg-green-600 hover:bg-green-700 text-white px-4 py-2.5 rounded-lg text-sm font-semibold transition-colors break-all"
         >
           <Phone className="w-4 h-4" />
           {airline.phone}
@@ -126,7 +126,7 @@ function AirlineCard({ airline }: { airline: AirlineInfo }) {
         {airline.whatsapp && (
           <a
             href={toTelHref(airline.whatsapp)}
-            className="w-full inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2.5 rounded-lg text-sm font-semibold transition-colors"
+            className="w-full inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2.5 rounded-lg text-sm font-semibold transition-colors break-all"
           >
             <Phone className="w-4 h-4" />
             {airline.whatsapp}
@@ -204,7 +204,7 @@ export default function AirlinesTab({ airlines, fetchedAt, isLoading, error, onR
         {isLoading && airlines.length === 0 ? (
           <AirlinesSkeleton />
         ) : (
-          <div className="grid grid-cols-3 gap-4 items-stretch">
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 items-stretch">
             {airlines.map((airline) => (
               <AirlineCard key={airline.id} airline={airline} />
             ))}

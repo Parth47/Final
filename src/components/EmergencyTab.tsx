@@ -69,7 +69,7 @@ function getContactNumbers(contact: EmbassyContact): ContactNumber[] {
 
 function EmergencySkeleton() {
   return (
-    <div className="grid grid-cols-3 gap-4" aria-hidden>
+    <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4" aria-hidden>
       {Array.from({ length: 6 }).map((_, index) => (
         <div key={index} className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-5 animate-pulse shadow-sm h-44">
           <div className="h-4 w-36 bg-gray-200 dark:bg-gray-700 rounded mb-3" />
@@ -83,14 +83,14 @@ function EmergencySkeleton() {
 
 function HotlineCard({ entry }: { entry: EmergencyNumber }) {
   return (
-    <article className="bg-white dark:bg-gray-900 border border-red-200 dark:border-red-800 rounded-2xl p-5 shadow-sm hover:shadow-md transition-shadow h-full flex items-start justify-between gap-3">
+    <article className="bg-white dark:bg-gray-900 border border-red-200 dark:border-red-800 rounded-2xl p-5 shadow-sm hover:shadow-md transition-shadow h-full flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
       <div>
         <h4 className="font-bold text-gray-900 dark:text-white text-sm">{entry.name}</h4>
         <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">{entry.description}</p>
       </div>
       <a
         href={toTelHref(entry.number)}
-        className="inline-flex items-center gap-1.5 bg-green-600 hover:bg-green-700 text-white px-3 py-2 rounded-lg text-sm font-bold transition-colors flex-shrink-0"
+        className="inline-flex items-center gap-1.5 bg-green-600 hover:bg-green-700 text-white px-3 py-2 rounded-lg text-sm font-bold transition-colors flex-shrink-0 break-all"
       >
         <Phone className="w-3.5 h-3.5" />
         {entry.number}
@@ -124,7 +124,7 @@ function CountryCard({ group }: { group: CountryGroup }) {
                   <a
                     key={`${contact.name}-${line.key}-${line.value}`}
                     href={toTelHref(line.value)}
-                    className="inline-flex items-center gap-1.5 bg-green-600 hover:bg-green-700 text-white px-3 py-2 rounded-lg text-xs font-bold transition-colors"
+                    className="inline-flex items-center gap-1.5 bg-green-600 hover:bg-green-700 text-white px-3 py-2 rounded-lg text-xs font-bold transition-colors break-all"
                   >
                     <Phone className="w-3 h-3" />
                     {line.value}
@@ -251,7 +251,7 @@ export default function EmergencyTab({
                 <p className="text-sm">No embassy contacts found.</p>
               </div>
             ) : (
-              <div className="grid grid-cols-3 gap-4 items-stretch">
+              <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 items-stretch">
                 {filteredGroups.map((group) => (
                   <CountryCard key={group.countryCode} group={group} />
                 ))}
@@ -269,7 +269,7 @@ export default function EmergencyTab({
             {emergencyNumbers.length === 0 ? (
               <div className="p-2 text-sm text-gray-500 dark:text-gray-400">No emergency line available.</div>
             ) : (
-              <div className="grid grid-cols-3 gap-4 items-stretch">
+              <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 items-stretch">
                 {emergencyNumbers.map((entry) => (
                   <HotlineCard key={`${entry.name}-${entry.number}`} entry={entry} />
                 ))}

@@ -84,7 +84,7 @@ export default function SourcesTab({ sources }: SourcesTabProps) {
       </section>
 
       <section className="bg-white/60 dark:bg-gray-900/40 border border-gray-200 dark:border-gray-800 rounded-2xl p-4 shadow-sm">
-        <div className="grid grid-cols-3 gap-4 items-stretch">
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 items-stretch">
           {sources.map((source) => {
             const channels = normalizeChannels(source);
 

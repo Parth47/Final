@@ -19,21 +19,21 @@ export default function NavTabs({ active, onChange }: NavTabsProps) {
   const { t } = useTranslation();
 
   return (
-    <nav className="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 sticky top-[60px] z-40 overflow-x-auto">
-      <div className="max-w-5xl mx-auto flex min-w-max">
+    <nav className="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 sm:sticky sm:top-[60px] z-40 overflow-x-auto">
+      <div className="max-w-6xl mx-auto flex min-w-max">
         {tabs.map((tab) => {
           const isActive = active === tab.id;
           return (
             <button
               key={tab.id}
               onClick={() => onChange(tab.id)}
-              className={`flex-1 min-w-[90px] flex items-center justify-center gap-1.5 py-3 px-2 text-sm font-semibold transition-all border-b-2 whitespace-nowrap ${
+              className={`flex-1 min-w-[84px] sm:min-w-[100px] flex items-center justify-center gap-1.5 py-3 px-2 text-xs sm:text-sm font-semibold transition-all border-b-2 ${
                 isActive
                   ? "border-blue-600 text-blue-600 dark:text-blue-400 dark:border-blue-400"
                   : "border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300"
               }`}
             >
-              <span>{t(tab.translationKey)}</span>
+              <span className="text-center leading-tight">{t(tab.translationKey)}</span>
             </button>
           );
         })}
